@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(python3 -c \"import sys; print\\(f''Python version: {sys.version}''\\)\")",
+      "Bash(./preflight_check.sh)",
+      "Bash(brew install:*)",
+      "Bash(brew list:*)",
+      "Bash(/opt/homebrew/bin/python3:*)",
+      "Bash(source:*)",
+      "Bash(python test_scraper.py:*)",
+      "Bash(python:*)",
+      "Bash(python3 -c \"from src.data.database import MemberDatabase; import pandas as pd; db = MemberDatabase\\(\\); df = db.get_all_data\\(\\); print\\(''Database rows:'', len\\(df\\)\\); print\\(''\\\\nSample data:''\\); print\\(df.head\\(10\\) if not df.empty else ''Empty''\\); print\\(''\\\\nColumns:'', df.columns.tolist\\(\\) if not df.empty else ''None''\\)\")"
+    ]
+  }
+}

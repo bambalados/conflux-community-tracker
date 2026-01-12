@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files (add your data file extensions)
+*.csv
+*.xlsx
+# Keep the database file in git for GitHub Actions
+# *.db
+# *.sqlite
+
+# Logs
+*.log
+streamlit.log
+
+# Environment
+.env
+.env.local
