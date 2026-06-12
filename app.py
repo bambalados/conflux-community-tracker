@@ -1,7 +1,9 @@
 """
 Conflux Community Member Tracking Dashboard
 """
+import json
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -419,21 +421,68 @@ col_text, col_copy = st.columns([4, 1])
 with col_text:
     st.text_area("Summary:", summary_text, height=300, label_visibility="collapsed")
 with col_copy:
-    if st.button("📋 Copy", use_container_width=True, key="copy_summary"):
-        st.write("")  # Button click handled by browser
-    # Add JavaScript to copy to clipboard
-    st.markdown(f"""
+    copy_payload = json.dumps(summary_text)
+    components.html(f"""
+    <button id="copy-summary" style="
+        width: 100%;
+        background: #4169e1;
+        color: #ffffff;
+        border: 0;
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        font: 600 16px sans-serif;
+        cursor: pointer;
+    ">📋 Copy</button>
+    <div id="copy-status" style="
+        color: #9aa0a6;
+        font: 13px sans-serif;
+        padding-top: 0.5rem;
+        min-height: 1.25rem;
+    "></div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {{
-        const copyBtn = document.querySelector('[data-testid="stButton"] button');
-        if (copyBtn && copyBtn.textContent.includes('Copy')) {{
-            copyBtn.addEventListener('click', function() {{
-                navigator.clipboard.writeText(`{summary_text}`);
-            }});
+    const summaryText = {copy_payload};
+    const button = document.getElementById("copy-summary");
+    const status = document.getElementById("copy-status");
+
+    function fallbackCopy(text) {{
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const copied = document.execCommand("copy");
+        document.body.removeChild(textArea);
+        if (!copied) {{
+            throw new Error("Fallback copy failed");
         }}
-    }});
+    }}
+
+    async function copySummary() {{
+        try {{
+            if (navigator.clipboard && window.isSecureContext) {{
+                await navigator.clipboard.writeText(summaryText);
+            }} else {{
+                fallbackCopy(summaryText);
+            }}
+            status.textContent = "Copied";
+            setTimeout(() => status.textContent = "", 1800);
+        }} catch (error) {{
+            try {{
+                fallbackCopy(summaryText);
+                status.textContent = "Copied";
+                setTimeout(() => status.textContent = "", 1800);
+            }} catch (fallbackError) {{
+                status.textContent = "Copy failed. Select the text manually.";
+            }}
+        }}
+    }}
+
+    button.addEventListener("click", copySummary);
     </script>
-    """, unsafe_allow_html=True)
+    """, height=90)
 
 st.subheader("🌍 Regional Distribution")
 
