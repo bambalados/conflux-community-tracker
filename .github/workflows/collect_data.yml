@@ -2,9 +2,8 @@ name: Bi-weekly Data Collection
 
 on:
   schedule:
-    # Runs every 2 weeks on Friday at 12:00 UTC (8pm Hong Kong Time)
-    # HKT is UTC+8, so 8pm HKT = 12:00 UTC
-    - cron: '0 12 * * 5'
+    # Runs daily at 23:30 Singapore/Hong Kong time.
+    - cron: '30 15 * * *'
 
   # Allow manual trigger
   workflow_dispatch:
