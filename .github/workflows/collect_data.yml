@@ -2,8 +2,8 @@ name: Bi-weekly Data Collection
 
 on:
   schedule:
-    # Runs daily at 23:30 Singapore/Hong Kong time.
-    - cron: '30 15 * * *'
+    # Runs daily at 12:00 Singapore/Hong Kong time.
+    - cron: '0 4 * * *'
 
   # Allow manual trigger
   workflow_dispatch:
