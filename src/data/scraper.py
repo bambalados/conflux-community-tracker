@@ -36,7 +36,7 @@ class MemberScraper:
         "Vietnam (TG)": "https://t.me/confluxvietnam",
     }
 
-    DISCORD_SERVER = "https://discord.com/invite/confluxnetwork"
+    DISCORD_SERVER = "https://discord.com/invite/conflux-network"
     DISCORD_NAME = "English (Discord)"
 
     def __init__(self, use_selenium: bool = False):

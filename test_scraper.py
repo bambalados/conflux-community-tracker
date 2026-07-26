@@ -84,7 +84,7 @@ print()
 
 # Test Discord (without Selenium for quick check)
 print("🔍 Testing Discord scraping (basic check)...")
-discord_url = "https://discord.com/invite/confluxnetwork"
+discord_url = "https://discord.com/invite/conflux-network"
 
 try:
     response = session.get(discord_url, timeout=10)

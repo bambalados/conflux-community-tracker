@@ -147,7 +147,7 @@ Verify the collected data is accurate:
 
 2. Compare member counts shown on Telegram with dashboard data
 
-3. Check Discord: https://discord.com/invite/confluxnetwork
+3. Check Discord: https://discord.com/invite/conflux-network
 
 ### 4.2 Check Database
 
